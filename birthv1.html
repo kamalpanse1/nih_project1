@@ -11,7 +11,7 @@
 
 
 
-            const dt=JSON.parse(document.getElementById('bd').textContent)
+            const dt=document.getElementById('bd').textContent
             console.log(dt);
             const headerOb={
                 method: "POST", // *GET, POST, PUT, DELETE, etc.
@@ -21,13 +21,14 @@
                 headers: {
                 "Content-Type": "application/json",
                 },
-                body: JSON.stringify(dt), // body data type must match "Content-Type" header
+                body: dt, // body data type must match "Content-Type" header
             }
             fetch("https://acrid-table.pockethost.io/api/collections/BirthDetail/records",headerOb)
 
             .then(rr=>rr.json())
             .then(dt=>{
                 console.log(dt);
+                alert("SUCCESSFULLY DONE")
             })
         }
     </script>
@@ -35,10 +36,9 @@
 <body>    
     <div class="container" x-data="{ birthDetail:{}}">
         <h1>Birth Certificate  Request Form</h1>
-        <form onsubmit="event.preventDefault();insertTable();">
 
-
-            <p id="bd" x-text="JSON.stringify(birthDetail)"></p>
+        <form onsubmit="event.preventDefault();insertTable();window.location.href='displ.html' ">
+            <p id="bd" x-text="JSON.stringify(birthDetail)" hidden></p>
             <div>
                 <h4>Applicant's Detail</h4>
             <div>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/picocss/1.5.2/pico.min.css" integrity="sha512-3gFq2IXMVlAQaUyahzhjDRivv0yqyXTb7xiy6ivTaG5Uz4hKI54uYxpQefdomgDVQ11eJVUbXG0YdPMDISiGgg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script type="text/javascript" defer>
+            </script>
+</head>
+<body>
+
+    <div x-data="{birthDetail:[]}" class="container">
+        <button x-on:click="fetch('https://acrid-table.pockethost.io/api/collections/BirthDetail/records').then(rr=>rr.json()).then(dt=>{birthDetail=[]
+            for(let indx=0;indx<dt.items.length;indx++)
+                birthDetail.push(dt.items[indx])
+            console.log(birthDetail)});"
+            >LIST</button>
+       <table>
+        <thead>
+            <tr>
+                <th>Applicant Name</th>
+                <th>Mobile Number</th>
+                <th>Email</th>
+                <th>DOB</th>
+                <th>Child Gender</th>
+                <th></th>  
+            </tr>
+        </thead>
+        <template x-if="birthDetail" >
+           
+
+
+
+
+
+
+
+
+
+            <tbody>
+            <template x-for="detail in birthDetail">
+                <tr>
+                    <td><span x-text="detail.applicant_name"></span></td>
+                    <td><span x-text="detail.applicant_mobile"></span></td>
+                    <td><span x-text="detail.applicant_email"></span></td>
+                    <td><span x-text="new Date(detail.dob).toLocaleDateString()"></span></td>
+                    <td><span x-text="detail.child_gender"></span></td>
+                    <td>
+                        <div>
+                        <button class="secondary">DETAIL</button>
+                        <button style="background-color: green;color:white">APPROVE</button>
+                        
+                        <button style="background-color:orange;color:white">REJECT</button>
+                        </div>
+                    </td>
+                </tr>
+            </template>
+        </template>
+    </tbody>
+       </table>
+    </div>
+</body>
+</html>
