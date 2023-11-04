@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/picocss/1.5.2/pico.min.css" integrity="sha512-3gFq2IXMVlAQaUyahzhjDRivv0yqyXTb7xiy6ivTaG5Uz4hKI54uYxpQefdomgDVQ11eJVUbXG0YdPMDISiGgg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script type="text/javascript">
+        function insertTable(){
+
+
+
+            const dt=JSON.parse(document.getElementById('bd').textContent)
+            console.log(dt);
+            const headerOb={
+                method: "POST", // *GET, POST, PUT, DELETE, etc.
+                mode: "cors", // no-cors, *cors, same-origin
+                cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+                credentials: "same-origin", // include, *same-origin, omit
+                headers: {
+                "Content-Type": "application/json",
+                },
+                body: JSON.stringify(dt), // body data type must match "Content-Type" header
+            }
+            fetch("https://acrid-table.pockethost.io/api/collections/BirthDetail/records",headerOb)
+
+            .then(rr=>rr.json())
+            .then(dt=>{
+                console.log(dt);
+            })
+        }
+    </script>
+</head>
+<body>    
+    <div class="container" x-data="{ birthDetail:{}}">
+        <h1>Birth Certificate  Request Form</h1>
+        <form onsubmit="event.preventDefault();insertTable();">
+
+
+            <p id="bd" x-text="JSON.stringify(birthDetail)"></p>
+            <div>
+                <h4>Applicant's Detail</h4>
+            <div>
+                <label for="name">Name
+                    <input x-model="birthDetail.applicant_name" id="name" type="text">
+                </label>
+            </div>
+            <div>
+                <label for="mobile">Mobile
+                    <input x-model="birthDetail.applicant_mobile" id="mobile" type="text">
+                </label>
+            </div>
+            <div>
+                <label for="email">Email
+                    <input x-model="birthDetail.applicant_email" id="email" type="email">
+                </label>
+            </div>
+        </div>
+        <div>
+            <h4>Birth Detail</h4>
+        <div>
+            <label for="cname">Child Name
+
+                <input x-model="birthDetail.child_name" id="cname" type="text">
+            </label>
+        </div>
+        <div>
+            <label for="dob">DOB
+                <input x-model="birthDetail.dob" type="date" name="dob" id="dob">
+        </label>
+        </div> 
+        <div>
+            <label for="gender">Gender
+                <select x-model="birthDetail.child_gender" name="gender" id="">
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+            </label>
+        </div>
+        <div>
+            <label for="fname">
+                Father Name
+
+                <input x-model="birthDetail.father_name" id="fname" type="text">
+            </label>
+        </div>
+        
+        <div>
+            <label for="mname">
+                Mother Name
+                <input x-model="birthDetail.mother_name" id="mname" type="text">
+            </label>
+        </div>
+    </div>
+        <div>
+                <h4>Birth Place Detail</h4>
+            <div>
+                <label for="hname">Hospital Name
+                    <input x-model="birthDetail.hospital_name" id="hname" type="text">
+                </label>
+            </div>
+            <div>
+                <label for="haddr">Hospital Address
+                    <textarea x-model="birthDetail.hospital_addr" name="haddr" id="haddr" rows="4"></textarea>
+                </label>
+            </div>
+        </div>
+        <div>
+            <h4>Parent's Present Address Detail</h4>
+        <div>
+            <label for="curraddr">Address Line
+                <textarea x-model="birthDetail.parent_curr_addr" name="curraddr" id="curraddr" rows="4"></textarea>
+
+            </label>
+        </div>     
+        
+        <div class="grid">
+            <div>
+                <label for="currdistrict">District
+                    <input x-model="birthDetail.parent_curr_dist" id="currdistrict" type="text" value="BANASKANTHA">
+                </label>
+            </div>                    
+            <div>
+                <label for="currstate">State
+                    <input x-model="birthDetail.parent_curr_state" id="currstate" type="text"  value="GUJARAT">
+                </label>
+            </div>
+            <div>
+                <label for="currpin">Pincode
+                    <input x-model="birthDetail.parent_curr_pincode" id="currpin" type="text">
+                </label>
+            </div>
+        </div>
+    </div>
+    
+    <div>
+        <h4>Parent's Permenant Address Detail</h4>
+    <div>
+        <label for="peraddr">Address Line
+            <textarea x-model="birthDetail.parent_per_addr" name="peraddr" id="peraddr" rows="4"></textarea>
+        </label>
+    </div>                
+    <div>
+        <label for="perdistrict">District
+            <input x-model="birthDetail.parent_per_dist" id="perdistrict" type="text" value="BANASKANTHA">
+        </label>
+    </div>
+    <div>
+        <label for="perstate">State
+            <input x-model="birthDetail.parent_per_state" id="perstate" type="text"  value="GUJARAT">
+        </label>
+    </div>
+    <div>
+        <label for="perpin">Pincode
+            <input x-model="birthDetail.parent_per_pincode" id="perpin" type="text">
+        </label>
+    </div>
+</div>
+
+
+
+<button  type="submit">SUBMIT</button>
+        </form>
+    </div>
+</body>
+</html>
