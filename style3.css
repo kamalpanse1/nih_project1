@@ -1,0 +1,30 @@
+@import url("https://fonts.googleeapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900;&display=swap");
+
+
+.{transition:all 0.3s ease-in-out;}
+
+.container{
+  clear:both;
+  overflow:auto;
+}
+
+nav{float:right;}
+
+.logo h1{float:left;}
+
+ul li{
+  display: inline-table; padding:10px;
+  font-size:20px; font-family:raleway;
+  
+}
+
+ul li:hover{
+  color:orange;
+  
+}
+
+.txt{
+  text-align: center;
+  display:block;
+  margin: auto 0;
+}
